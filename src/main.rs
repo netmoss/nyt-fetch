@@ -72,7 +72,6 @@ fn mini() -> Result<String, Box<dyn Error>> {
     
     #[derive(Deserialize)]
     struct Cell {
-        #[serde(default)] // make clues field optional
         clues: Option<Vec<u8>>,
         answer: Option<String>,
     }
