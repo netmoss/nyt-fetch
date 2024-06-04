@@ -41,6 +41,22 @@ fn connections() -> Result<(), Box<dyn Error>> {
     Ok(())
 }
 
+fn strands() -> Result<String, Box<dyn Error>> {
+    let date: String = Local::now().to_string();
+
+    #[derive(Debug, Deserialize)]
+    struct Strands {
+        spangram: String,
+        themeWords: Vec<String>,
+    }
+
+    let response = reqwest::blocking::get(format!("https://www.nytimes.com/games-assets/strands/{}.json", &date[..10]))?;
+    let data: Strands = response.json()?;
+
+    Ok(format!("Spangram {}\nSolutions: {}", data.spangram, data.themeWords.join(", ")))
+
+}
+
 fn main() -> Result<(), Box<dyn Error>> {
     loop {
         println!("Enter the game you want the answers to (Wordle, Connections, Strands, Mini), or type 'quit' to close the program.");
@@ -53,6 +69,9 @@ fn main() -> Result<(), Box<dyn Error>> {
             }
             "connections" => {
                connections()?;
+            }
+            "strands" => {
+                println!("{}", strands()?);
             }
             "quit" => {
                 exit(0)
