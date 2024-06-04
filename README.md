@@ -8,6 +8,6 @@ This is a Rust port of my Python project: https://github.com/ptblnk/nytinator300
 - Strands
 - Mini
 
-## How does this script work?
+## How does this program work?
 It retrieves the .json file that stores today's solutions for the selected game from the NYT servers, parses it, and then prints out the relevant data.
 
