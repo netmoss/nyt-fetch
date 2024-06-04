@@ -5,7 +5,7 @@ use std::{error::Error, io, process::exit, collections::HashMap};
 fn wordle() -> Result<String, Box<dyn Error>> {
     let date: String = Local::now().to_string();
 
-    #[derive(Debug, Deserialize)]
+    #[derive(Deserialize)]
     struct Wordle {
         solution: String,
     }
@@ -18,12 +18,12 @@ fn wordle() -> Result<String, Box<dyn Error>> {
 fn connections() -> Result<(), Box<dyn Error>> {
     let date: String = Local::now().to_string();
 
-    #[derive(Debug, Deserialize)]
+    #[derive(Deserialize)]
     struct Connections {
         groups: HashMap<String, Group>,
     }
     
-    #[derive(Debug, Deserialize)]
+    #[derive(Deserialize)]
     struct Group {
         members: Vec<String>,
     }
@@ -44,7 +44,7 @@ fn connections() -> Result<(), Box<dyn Error>> {
 fn strands() -> Result<String, Box<dyn Error>> {
     let date: String = Local::now().to_string();
 
-    #[derive(Debug, Deserialize)]
+    #[derive(Deserialize)]
     struct Strands {
         spangram: String,
         themeWords: Vec<String>,
