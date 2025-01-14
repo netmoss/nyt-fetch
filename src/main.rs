@@ -51,7 +51,7 @@ fn strands() -> Result<String, Box<dyn Error>> {
         themeWords: Vec<String>,
     }
 
-    let response = reqwest::blocking::get(format!("https://www.nytimes.com/games-assets/strands/{}.json", &date[..10]))?;
+    let response = reqwest::blocking::get(format!("https://www.nytimes.com/svc/strands/v2/{}.json", &date[..10]))?;
     let data: Strands = response.json()?;
 
     Ok(format!("Spangram {}\nSolutions: {}", data.spangram, data.themeWords.join(", ")))
